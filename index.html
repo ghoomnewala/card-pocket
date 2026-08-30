@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#071a35" />
+    <title>Card Pocket — Local Card Vault</title>
+    <link rel="stylesheet" href="styles.css?v=21" />
+  </head>
+  <body class="locked">
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Card Pocket home"><img src="assets/card-pocket-logo.png" alt="Card Pocket" /></a>
+        <span class="local-badge"><span></span> Stored on this device</span>
+      </header>
+
+      <section class="hero">
+        <div>
+          <p class="eyebrow">PERSONAL CARD VAULT</p>
+          <h1>Your cards, kept<br />close at hand.</h1>
+          <p class="intro">A clean, private place for your card details. Nothing is sent to a server — this browser keeps your cards on this device.</p>
+        </div>
+        <button class="add-button" type="button" data-open-modal><span>+</span> Add a card</button>
+      </section>
+
+      <section aria-labelledby="cards-heading">
+        <div class="section-heading"><h2 id="cards-heading">Your cards</h2><p id="card-count">0 cards</p></div>
+        <div class="card-grid" id="card-grid"></div>
+        <div class="empty-state" id="empty-state">
+          <div class="empty-icon">+</div>
+          <h2>No cards yet</h2>
+          <p>Add a card and its details will remain stored only in this browser.</p>
+          <button class="text-button" type="button" data-open-modal>Add your first card <span>→</span></button>
+        </div>
+      </section>
+
+      <p class="privacy-note">Your cards are saved in this browser’s local storage. They are not uploaded, shared, or synced between devices.</p>
+    </main>
+
+    <dialog id="card-dialog" aria-labelledby="dialog-title">
+      <form id="card-form">
+        <div class="dialog-heading">
+          <div><p class="eyebrow">NEW CARD</p><h2 id="dialog-title">Add card details</h2></div>
+          <button class="close-button" type="button" data-close-modal aria-label="Close add card form">×</button>
+        </div>
+        <p class="dialog-intro">Details are saved locally in this browser only.</p>
+        <div class="form-grid">
+          <label class="full-width">Bank name<select id="bank-name" name="bankName" required autocomplete="off"><option value="" selected disabled>Select your bank</option><option>State Bank of India</option><option>Punjab National Bank</option><option>Bank of Baroda</option><option>Canara Bank</option><option>Punjab &amp; Sind Bank</option><option>HDFC Bank</option><option>ICICI Bank</option><option>Axis Bank</option><option>Kotak Mahindra Bank</option><option>IndusInd Bank</option><option>IDFC FIRST Bank</option><option>Federal Bank</option><option>YES Bank</option><option>RBL Bank</option></select></label>
+          <label class="full-width variant-field" id="variant-field" hidden>Card variant<select id="card-variant" name="variant" disabled><option value="" selected disabled>Select an SBI card variant</option><option>AURUM</option><option>SBI Card Elite</option><option>SBI Card Pulse</option><option>SimplyCLICK SBI Card</option><option>SBI Card PRIME</option><option>SimplySAVE SBI Card</option><option>CASHBACK SBI Card</option><option>IndiGo SBI Card ELITE</option></select></label>
+          <label>Cardholder name<input id="holder-name" name="holderName" maxlength="32" pattern="[A-Za-z]+( [A-Za-z]+)*" placeholder="Name on card" required autocomplete="cc-name" /></label>
+          <label class="full-width">Card number<input id="card-number" name="cardNumber" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" required autocomplete="cc-number" /></label>
+          <label>Expiry<input id="card-expiry" name="expiry" inputmode="numeric" maxlength="5" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])/(2[6-9]|3[0-9]|40)" required autocomplete="cc-exp" /></label>
+          <label>CVV<input id="card-cvv" name="cvv" inputmode="numeric" maxlength="3" pattern="[0-9]{3}" placeholder="•••" required autocomplete="cc-csc" /></label>
+        </div>
+        <p class="form-error" id="form-error" role="alert"></p>
+        <div class="dialog-actions"><button class="cancel-button" type="button" data-close-modal>Cancel</button><button class="save-button" type="submit">Save card</button></div>
+      </form>
+    </dialog>
+    <template id="card-template">
+      <article class="stored-card" tabindex="0">
+        <div class="card-face card-front"><span>Tap to view details</span><span class="network front-network"></span></div><div class="card-face card-back">
+        <div class="card-top"><div class="bank-logo"><span class="bank-mark"></span><p class="bank-name"></p></div><div class="card-controls"><span class="contactless">◔</span><button type="button" class="delete-action" aria-label="Delete card" title="Delete card">×</button></div></div>
+        <div class="number-row"><p class="number"></p><div class="number-actions"><button type="button" class="reveal-action" aria-label="Show card details" title="Show card details">◉</button><button type="button" class="copy-action" aria-label="Copy card number" title="Copy card number">⧉</button></div></div>
+        <div class="card-bottom"><div><span class="caption">CARDHOLDER</span><p class="holder-name"></p></div><div class="card-meta"><span class="caption">CVV / EXPIRY</span><p class="expiry"></p></div></div>
+        </div></article>
+    </template>
+    <dialog id="pin-dialog" class="pin-dialog" aria-labelledby="pin-title">
+      <form id="pin-form">
+        <p class="eyebrow" id="pin-kicker">LOCAL ACCESS</p>
+        <h2 id="pin-title">Set up your 4-digit PIN</h2>
+        <p id="pin-copy">Choose a PIN to open your card pocket on this browser.</p>
+        <label class="pin-label" for="vault-pin">PIN<input id="vault-pin" type="password" inputmode="numeric" autocomplete="off" maxlength="4" pattern="[0-9]{4}" placeholder="••••" required /></label>
+        <p class="pin-error" id="pin-error" role="alert"></p>
+        <button class="save-button pin-submit" type="submit">Set PIN</button>
+      </form>
+    </dialog>
+    <script src="app.js?v=32"></script>
+  </body>
+</html>

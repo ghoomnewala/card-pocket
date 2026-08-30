@@ -1,0 +1,217 @@
+:root { color-scheme: dark; --ink:#f4f7ff; --muted:#9da9bb; --line:rgba(225,235,255,.16); --navy:#07182f; --orange:#ff8a50; --cream:#ffe0a0; }
+* { box-sizing:border-box; }
+body { margin:0; min-width:320px; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); background:radial-gradient(circle at 75% 4%, #163e68 0, transparent 30rem), #071327; }
+button,input { font:inherit; } button { cursor:pointer; }
+.shell { width:min(1120px, calc(100% - 40px)); margin:auto; min-height:100vh; padding:28px 0 45px; }
+.topbar,.hero,.section-heading,.card-top,.card-bottom,.card-actions,.dialog-heading,.dialog-actions { display:flex; align-items:center; justify-content:space-between; }
+.brand { color:white; text-decoration:none; display:flex; gap:9px; align-items:center; font-size:15px; font-weight:800; letter-spacing:-.5px; }.brand-mark { display:grid; place-items:center; width:31px;height:31px;border:1px solid var(--orange);border-radius:9px;color:var(--orange); }
+.local-badge { display:flex;align-items:center;gap:8px;color:#c8d2e2;font-size:12px; }.local-badge span { width:7px;height:7px;border-radius:99px;background:#71e1ad;box-shadow:0 0 0 4px rgba(113,225,173,.11); }
+.hero { align-items:flex-end; padding:88px 0 65px; border-bottom:1px solid var(--line); }.eyebrow { color:var(--orange);font-size:10px;font-weight:800;letter-spacing:1.7px;margin:0 0 13px; }.hero h1 { font-size:clamp(37px,5.1vw,62px);line-height:1.06;letter-spacing:-3px;margin:0; }.intro { max-width:520px;line-height:1.7;font-size:14px;color:var(--muted);margin:22px 0 0; }.add-button,.save-button { background:var(--orange);border:0;border-radius:10px;color:#121a28;font-weight:800;padding:13px 19px;box-shadow:0 10px 25px rgba(255,138,80,.19);white-space:nowrap;}.add-button span { font-size:22px;vertical-align:-2px;margin-right:7px;font-weight:400; }
+.section-heading { margin:42px 0 20px; }.section-heading h2 { font-size:17px;margin:0; }.section-heading p { color:var(--muted);font-size:12px;margin:0; }.card-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px; }
+.stored-card { min-height:269px;padding:25px 27px 0;position:relative;overflow:hidden;border:1px solid rgba(255,219,151,.55);border-radius:19px;background:radial-gradient(circle at 86% 0,#3c6897 0,transparent 36%),linear-gradient(140deg,#102d55,#07182f 70%);box-shadow:0 19px 38px rgba(0,0,0,.24); }.stored-card:before { content:"";position:absolute;inset:auto -18% -42% 20%;height:82%;border:1px solid rgba(255,255,255,.12);border-radius:50%;transform:rotate(-16deg); }.card-top,.chip,.number,.card-bottom { position:relative;z-index:1; }.bank-name { margin:0;color:#ffe2a6;font-size:13px;font-weight:800;letter-spacing:1.7px;text-transform:uppercase;max-width:82%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }.contactless { color:#ffe2a6;font-size:28px;transform:rotate(90deg); }.chip { width:48px;height:36px;margin-top:28px;border:1px solid #b98f42;border-radius:7px;background:linear-gradient(120deg,#d9b362,#ffe49b,#be8d40); }.chip i { display:block;position:absolute;background:rgba(93,60,18,.45); }.chip i:nth-child(1){width:100%;height:1px;top:11px}.chip i:nth-child(2){width:100%;height:1px;bottom:10px}.chip i:nth-child(3){height:100%;width:1px;left:21px}.number { margin:25px 0 21px;color:#fff;font-family:'DM Mono',monospace;font-size:clamp(18px,2.25vw,24px);letter-spacing:1.7px;white-space:nowrap;text-shadow:0 2px 6px #0006; }.caption { display:block;font-size:8px;color:#e5bc6b;letter-spacing:1.3px;font-weight:700; }.holder-name,.expiry { font-size:12px;letter-spacing:1px;margin:4px 0 0;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }.card-bottom { padding-right:93px;align-items:flex-end; }.card-meta { margin-left:auto; }.network { position:absolute;right:0;bottom:0;font-weight:800;font-size:17px;letter-spacing:-1.5px;text-transform:capitalize; }.network.visa { font-style:italic;color:#fff; }.network.mastercard { width:36px;height:25px;font-size:0; }.network.mastercard:before,.network.mastercard:after { content:"";position:absolute;width:22px;height:22px;border-radius:50%;bottom:0; }.network.mastercard:before { left:0;background:#ec6047; }.network.mastercard:after { right:0;background:#f5b653;mix-blend-mode:screen; }.network.rupay { color:#79bef3;font-size:15px; }.card-actions { position:absolute;z-index:2;bottom:0;left:0;right:0;height:42px;padding:0 15px;background:rgba(2,12,28,.72);transform:translateY(100%);transition:transform .2s; }.stored-card:hover .card-actions,.stored-card:focus-within .card-actions { transform:translateY(0); }.card-actions button { border:0;background:none;color:#dbe6f8;font-size:11px;padding:6px; }.card-actions .copy-action { color:var(--cream);margin-left:auto; }.card-actions .delete-action { font-size:21px;color:#ffad9c; }
+.empty-state { border:1px dashed rgba(225,235,255,.28);padding:55px 25px;text-align:center;border-radius:18px; }.empty-icon { margin:auto auto 15px;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#102846;color:var(--orange);font-size:23px; }.empty-state h2 { font-size:17px;margin:0; }.empty-state p { color:var(--muted);font-size:13px;margin:9px auto 17px; }.text-button { color:var(--orange);background:none;border:0;font-weight:800;font-size:13px; }.text-button span { font-size:18px;margin-left:4px; }.privacy-note { color:#718097;font-size:11px;text-align:center;margin:43px 0 0; }
+dialog { color:var(--ink);width:min(550px,calc(100% - 28px));padding:0;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:#0c1d35;box-shadow:0 25px 70px #0008; }dialog::backdrop { background:#020812aa;backdrop-filter:blur(5px); }#card-form { padding:29px; }.dialog-heading h2 { margin:0;font-size:22px;letter-spacing:-.7px; }.close-button { border:0;background:#142945;color:#cbd8ea;border-radius:8px;width:33px;height:33px;font-size:24px;line-height:1; }.dialog-intro { color:var(--muted);font-size:12px;margin:10px 0 23px; }.form-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px; }.form-grid label { color:#c8d4e4;font-size:11px;font-weight:700; }.form-grid input { display:block;width:100%;margin-top:7px;padding:11px 12px;border:1px solid #284563;border-radius:8px;background:#09172b;color:white;outline:none; }.form-grid input:focus { border-color:var(--orange);box-shadow:0 0 0 3px #ff8a5022; }.full-width { grid-column:1/-1; }.form-error { min-height:18px;margin:16px 0 0;color:#ffad9c;font-size:12px; }.dialog-actions { margin-top:10px;justify-content:flex-end;gap:10px; }.cancel-button { padding:11px 15px;background:none;border:0;color:#b7c4d5;font-weight:700; }
+@media (max-width:650px) { .shell {width:min(100% - 28px,1120px);padding-top:18px}.hero{padding:63px 0 42px;align-items:flex-start;gap:28px;flex-direction:column}.hero h1{letter-spacing:-2.2px}.add-button{width:100%}.card-grid{grid-template-columns:1fr;gap:16px}.stored-card{min-height:264px}.number{font-size:20px}.card-actions{transform:translateY(0)}.form-grid{grid-template-columns:1fr}.full-width{grid-column:auto} }
+.number-row { position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:8px; margin:25px 0 21px; }
+.number-row .number { margin:0; }
+.number-actions { display:flex; gap:5px; }
+.number-actions button { display:grid; place-items:center; width:29px; height:29px; padding:0; border:1px solid rgba(255,226,166,.36); border-radius:7px; background:rgba(5,20,42,.42); color:#ffe2a6; font-size:15px; }
+.number-actions button:hover { background:rgba(255,226,166,.17); }
+.card-actions { height:34px; }
+.card-actions .delete-action { font-size:11px; }
+.bank-logo { display:flex;align-items:center;gap:9px;min-width:0; }
+.bank-mark { display:grid;place-items:center;flex:0 0 auto;width:24px;height:24px;border:1px solid #ffe2a6;border-radius:7px;color:#ffe2a6;font-size:9px;font-weight:900;letter-spacing:-.5px; }
+.bank-name { max-width:210px;letter-spacing:1.2px; }
+.form-grid select { display:block;width:100%;margin-top:7px;padding:11px 12px;border:1px solid #284563;border-radius:8px;background:#09172b;color:white;outline:none; }
+.form-grid select:focus { border-color:var(--orange);box-shadow:0 0 0 3px #ff8a5022; }
+.form-grid select option { background:#09172b;color:white; }
+.form-grid select { font:inherit;font-size:14px;appearance:none;background-image:linear-gradient(45deg,transparent 50%,#ffca80 50%),linear-gradient(135deg,#ffca80 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:38px; }
+.card-actions { display:none; }
+.stored-card { padding-bottom:24px; }
+.bank-mark { width:32px;height:32px;border:0;border-radius:10px;background:linear-gradient(140deg,#ffd16f,#e89538);color:#132b50;font-size:10px;box-shadow:inset 0 1px 0 #fff8; }
+.bank-name { max-width:calc(100% - 55px);font-size:14px;letter-spacing:.7px; }
+.bank-logo { max-width:calc(100% - 45px); }
+.card-bottom { margin-top:2px; }
+.bank-mark.axis-logo { width:148px;height:46px;border-radius:0;background:url("assets/axis-bank-transparent.png") center/contain no-repeat;box-shadow:none; }
+.card-controls { display:flex;align-items:center;gap:11px; }
+.delete-action { border:1px solid rgba(255,174,155,.5);border-radius:7px;background:rgba(70,18,22,.28);color:#ffb6a6;font-size:10px;font-weight:800;padding:7px 9px; }
+.delete-action:hover { background:rgba(180,49,55,.3); }
+.locked .shell { filter:blur(10px);pointer-events:none;user-select:none; }
+.pin-dialog { width:min(410px,calc(100% - 32px)); }
+.pin-dialog form { padding:32px; }.pin-dialog h2 { margin:0;font-size:25px;letter-spacing:-1px; }.pin-dialog p:not(.eyebrow):not(.pin-error) { margin:10px 0 24px;color:var(--muted);font-size:13px;line-height:1.6; }.pin-label { display:block;color:#c8d4e4;font-size:11px;font-weight:700; }.pin-label input { display:block;width:100%;margin-top:7px;padding:13px 14px;border:1px solid #284563;border-radius:8px;background:#09172b;color:white;outline:none;font-size:19px;letter-spacing:8px;text-align:center; }.pin-label input:focus { border-color:var(--orange);box-shadow:0 0 0 3px #ff8a5022; }.pin-error { min-height:19px;margin:10px 0;color:#ffad9c;font-size:12px; }.pin-submit { width:100%;margin-top:3px; }
+.number-row { margin-top:42px;margin-bottom:28px; }.card-bottom { display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;padding-right:70px; }.card-meta { margin-left:0;text-align:right; }.caption { white-space:nowrap;letter-spacing:1px; }.holder-name { max-width:190px; }
+.stored-card { min-height:276px;padding:22px 24px 24px;background:radial-gradient(circle at 94% -8%,rgba(109,166,219,.72),transparent 37%),radial-gradient(circle at 14% 102%,rgba(31,93,157,.38),transparent 48%),linear-gradient(135deg,#123a68 0%,#0a2549 46%,#061a36 100%); }
+.stored-card:after { content:"";position:absolute;inset:1px;border-radius:18px;background:linear-gradient(115deg,rgba(255,255,255,.12),transparent 25%,transparent 67%,rgba(255,255,255,.04));pointer-events:none; }
+.card-top,.number-row,.card-bottom { z-index:2; }
+.bank-logo,.brand-logo-card .bank-logo,.axis-bank-card .bank-logo { max-width:210px; }
+.bank-mark,.bank-mark.axis-logo,.bank-mark.baroda-logo,.bank-mark.logo-sbi,.bank-mark.logo-pnb,.bank-mark.logo-canara,.bank-mark.logo-union,.bank-mark.logo-boi,.bank-mark.logo-indian,.bank-mark.logo-central,.bank-mark.logo-iob,.bank-mark.logo-uco,.bank-mark.logo-maharashtra,.bank-mark.logo-psb,.bank-mark.logo-hdfc,.bank-mark.logo-icici,.bank-mark.logo-kotak,.bank-mark.logo-indusind,.bank-mark.logo-idfc,.bank-mark.logo-federal,.bank-mark.logo-bandhan,.bank-mark.logo-rbl,.bank-mark.logo-yes { width:190px;height:54px;background-size:contain;background-position:left center; }
+.card-controls { gap:8px; }.delete-action { display:grid;place-items:center;width:31px;height:31px;padding:0;border-color:rgba(255,255,255,.2);background:rgba(4,17,37,.34);color:#dce8f8;font-size:20px;font-weight:400;line-height:1; }.delete-action:hover { color:#ffb6a6;background:rgba(180,49,55,.3); }
+.contactless { font-size:25px; }.number-row { margin-top:39px;margin-bottom:25px; }.card-bottom { align-items:end;gap:14px;padding-right:58px; }.caption { color:#f0c46e;font-size:8px;letter-spacing:1.25px; }.holder-name,.expiry { font-size:12px;letter-spacing:.8px; }.card-meta { min-width:79px; }.network { font-size:16px; }
+.stored-card.sbi-variant-card { background:var(--card-art) center/cover no-repeat;box-shadow:0 20px 38px rgba(0,0,0,.35); }
+.sbi-variant-card:before,.sbi-variant-card:after { display:none; }.sbi-variant-card .bank-logo,.sbi-variant-card .contactless { visibility:hidden; }.sbi-variant-card .number-row { margin-top:96px;margin-bottom:17px;padding:8px 10px;border-radius:9px;background:rgba(2,11,27,.65);backdrop-filter:blur(5px); }.sbi-variant-card .card-bottom { padding:9px 10px 6px;border-radius:9px;background:rgba(2,11,27,.65);backdrop-filter:blur(5px); }.sbi-variant-card .card-controls { position:relative;z-index:3; }.sbi-variant-card .delete-action { color:#fff;background:rgba(2,11,27,.55); }
+.stored-card.sbi-variant-card { min-height:0;aspect-ratio:1.6;padding:0;background:var(--card-art) center/cover no-repeat; }
+.sbi-variant-card .card-controls { position:absolute;z-index:5;top:15px;right:15px; }.sbi-variant-card .delete-action { border-color:rgba(255,255,255,.28); }
+.sbi-variant-card .number-row { position:absolute;z-index:4;top:55%;left:20px;right:20px;margin:0;padding:8px 11px;background:linear-gradient(90deg,rgba(2,9,22,.76),rgba(2,9,22,.36)); }
+.sbi-variant-card .card-bottom { position:absolute;z-index:4;left:20px;right:20px;bottom:14px;margin:0;padding:7px 11px;background:linear-gradient(90deg,rgba(2,9,22,.76),rgba(2,9,22,.36)); }
+.sbi-variant-card .network { right:8px;bottom:6px; }
+
+/* Card details sit directly on the artwork, like they do on a physical card. */
+.sbi-variant-card .number-row,
+.sbi-variant-card .card-bottom {
+  background: none;
+  backdrop-filter: none;
+  border-radius: 0;
+  padding: 0;
+}
+.sbi-variant-card .number-row {
+  top: 55%;
+  left: 20px;
+  right: 20px;
+}
+.sbi-variant-card .card-bottom {
+  left: 20px;
+  right: 20px;
+  bottom: 14px;
+}
+.sbi-variant-card .number,
+.sbi-variant-card .holder-name,
+.sbi-variant-card .expiry {
+  color: #fff;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, .58);
+}
+.sbi-variant-card .number {
+  font-family: "Courier New", ui-monospace, monospace;
+  font-weight: 700;
+  letter-spacing: 1.9px;
+}
+.sbi-variant-card .caption {
+  color: rgba(255, 255, 255, .86);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .58);
+}
+
+/* Transparent, original-style payment-network marks. */
+.network.visa,
+.network.mastercard,
+.network.rupay {
+  display: block;
+  right: 8px;
+  bottom: 6px;
+  height: 28px;
+  font-size: 0;
+  font-style: normal;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.network.visa { width: 62px; background-image: url("assets/networks/visa.png"); }
+.network.mastercard { width: 48px; background-image: url("assets/networks/mastercard.png"); }
+.network.rupay { width: 64px; background-image: url("assets/networks/rupay.png"); }
+.network.mastercard::before,
+.network.mastercard::after { display: none; }
+
+/* Give the name its own position beneath the number, while leaving the lower
+   edge free for the payment-network mark. */
+.sbi-variant-card .card-bottom {
+  padding-right: 82px;
+}
+.sbi-variant-card .card-bottom > div:first-child {
+  transform: translateY(-56px);
+}
+.sbi-variant-card .card-meta {
+  transform: translateY(-56px);
+}
+.sbi-variant-card .holder-name,
+.sbi-variant-card .expiry {
+  font-size: 14px;
+  font-weight: 700;
+}
+.sbi-variant-card .network {
+  right: 0;
+  bottom: 0;
+  width: 110px;
+  height: 48px;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .38));
+}
+.sbi-variant-card .network.visa,
+.sbi-variant-card .network.mastercard,
+.sbi-variant-card .network.rupay { width: 110px; height: 48px; }
+.sbi-variant-card.light-network-mark .network.visa {
+  filter: brightness(0) invert(1) drop-shadow(0 1px 3px rgba(0, 0, 0, .42));
+}
+
+/* Responsive card-data lanes: number, details, then payment mark. */
+.sbi-variant-card { container-type: inline-size; }
+.sbi-variant-card .number-row {
+  top: 54%;
+  left: 5.2cqw;
+  right: 5.2cqw;
+  gap: 2.2cqw;
+}
+.sbi-variant-card .number {
+  font-size: clamp(15px, 5cqw, 24px);
+  letter-spacing: clamp(.8px, .5cqw, 1.9px);
+}
+.sbi-variant-card .number-actions { flex: 0 0 auto; }
+.sbi-variant-card .card-bottom {
+  top: 68%;
+  bottom: auto;
+  left: 5.2cqw;
+  right: 5.2cqw;
+  gap: 2.6cqw;
+  padding-right: clamp(78px, 31cqw, 122px);
+}
+.sbi-variant-card .card-bottom > div:first-child,
+.sbi-variant-card .card-meta { transform: none; }
+.sbi-variant-card .holder-name,
+.sbi-variant-card .expiry { font-size: clamp(11px, 3.5cqw, 14px); }
+.sbi-variant-card .caption { font-size: clamp(7px, 2.1cqw, 8px); }
+.sbi-variant-card .network,
+.sbi-variant-card .network.visa,
+.sbi-variant-card .network.mastercard,
+.sbi-variant-card .network.rupay {
+  width: clamp(76px, 28cqw, 110px);
+  height: clamp(34px, 12cqw, 48px);
+  right: -2.5cqw;
+  bottom: clamp(-35px, -9cqw, -22px);
+}
+
+@media (max-width: 420px) {
+  .sbi-variant-card .card-controls { top: 3.8cqw; right: 3.8cqw; }
+  .sbi-variant-card .card-bottom { top: 67%; }
+}
+.axis-bank-card .bank-name { display:none; }
+.axis-bank-card .bank-logo { max-width:148px; }
+.brand-logo-card .bank-name { display:none; }
+.brand-logo-card .bank-logo { max-width:150px; }
+.bank-mark.logo-sbi,.bank-mark.logo-pnb,.bank-mark.logo-canara,.bank-mark.logo-union,.bank-mark.logo-boi,.bank-mark.logo-indian,.bank-mark.logo-central,.bank-mark.logo-iob,.bank-mark.logo-uco,.bank-mark.logo-maharashtra,.bank-mark.logo-psb { width:146px;height:49px;border-radius:0;background-image:url("assets/public-banks-source.jpg");background-size:584px 324px;background-repeat:no-repeat;mix-blend-mode:multiply;box-shadow:none; }
+.bank-mark.logo-boi { background-position:-146px -8px; }.bank-mark.logo-maharashtra { background-position:-292px -8px; }.bank-mark.logo-canara { background-position:-438px -8px; }
+.bank-mark.logo-central { background-position:0 -108px; }.bank-mark.logo-indian { background-position:-146px -108px; }.bank-mark.logo-iob { background-position:-292px -108px; }.bank-mark.logo-psb { background-position:-438px -108px; }
+.bank-mark.logo-pnb { background-position:0 -216px; }.bank-mark.logo-sbi { background-position:-146px -216px; }.bank-mark.logo-uco { background-position:-292px -216px; }.bank-mark.logo-union { background-position:-438px -216px; }
+.bank-mark.logo-hdfc,.bank-mark.logo-icici,.bank-mark.logo-kotak,.bank-mark.logo-indusind,.bank-mark.logo-idfc,.bank-mark.logo-federal,.bank-mark.logo-bandhan,.bank-mark.logo-rbl { width:146px;height:50px;border-radius:0;background-image:url("assets/private-banks-source.jpg");background-size:584px 329px;background-repeat:no-repeat;mix-blend-mode:multiply;box-shadow:none; }
+.bank-mark.logo-hdfc { background-position:0 -14px; }.bank-mark.logo-icici { background-position:-146px -14px; }.bank-mark.logo-kotak { background-position:-438px -14px; }
+.bank-mark.logo-indusind { background-position:-146px -124px; }.bank-mark.logo-bandhan { background-position:-292px -124px; }
+.bank-mark.logo-federal { background-position:0 -234px; }.bank-mark.logo-idfc { background-position:-146px -234px; }.bank-mark.logo-rbl { background-position:-438px -234px; }
+.bank-mark.logo-yes { width:146px;height:50px;border-radius:0;background:url("assets/bank-of-baroda-reference.png") -10px -65px/500px auto no-repeat;mix-blend-mode:multiply;box-shadow:none; }
+.bank-mark.baroda-logo { mix-blend-mode:normal; }
+.bank-mark.baroda-logo { width:142px;height:45px;border-radius:0;background:url("assets/bank-of-baroda-reference.png") -11px -14px/500px auto no-repeat;box-shadow:none;mix-blend-mode:multiply; }
+.brand img { display:block;width:168px;height:auto;max-height:48px;object-fit:contain; }
+@media (max-width:650px) { .brand img { width:132px;max-height:38px; } }
+
+/* Tap-to-flip card privacy view. */
+.stored-card { perspective:1200px;background:none;cursor:pointer; }
+.card-face { position:absolute;inset:0;backface-visibility:hidden;border-radius:19px;transition:transform .55s ease;overflow:hidden; }
+.card-front { display:grid;place-items:end start;padding:18px;background:radial-gradient(circle at 88% 0,#3c6897,transparent 38%),linear-gradient(140deg,#102d55,#07182f 70%);color:#fff;font-size:10px;letter-spacing:1px;text-transform:uppercase;text-shadow:0 1px 4px #000; }
+.card-front span { opacity:.7; }
+.card-front .front-network { position:absolute;right:18px;bottom:16px;opacity:1; }
+.sbi-variant-card .card-front .front-network { width:clamp(76px,28cqw,110px);height:clamp(34px,12cqw,48px);right:2.7cqw;bottom:3.5cqw; }
+.card-back { transform:rotateY(180deg);background:linear-gradient(145deg,#0c2340,#051429);padding:22px 24px;cursor:default; }
+.stored-card.is-flipped .card-front { transform:rotateY(180deg); }
+.stored-card.is-flipped .card-back { transform:rotateY(360deg); }
+.stored-card:not(.is-flipped) .card-back { visibility:hidden;pointer-events:none; }
+.stored-card.is-flipped .card-front { visibility:hidden;pointer-events:none; }
+.card-back .card-top,.card-back .number-row,.card-back .card-bottom { position:relative; }
+.stored-card:not(.is-flipped) > .card-back { pointer-events:none; }
+.sbi-variant-card .card-front { background:var(--card-art) center/cover no-repeat; }
+.sbi-variant-card .card-back .card-top,.sbi-variant-card .card-back .number-row,.sbi-variant-card .card-back .card-bottom { position:relative;top:auto;left:auto;right:auto;bottom:auto;margin:20px 0;padding:0;transform:none;background:none; }
+.sbi-variant-card .card-back .card-bottom { display:grid;grid-template-columns:1fr auto;padding-right:110px; }
+.sbi-variant-card .card-back .network { right:0;bottom:0; }
